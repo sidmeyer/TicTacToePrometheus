@@ -6,20 +6,23 @@ import java.util.Scanner;
  * Created by stas on 21.03.17.
  */
 public class Player {
-    ActionFigure figure;
+    private final ActionFigure figure;
 
     Player(ActionFigure figure) {
         this.figure = figure;
     }
 
-    // TODO
+    public ActionFigure getFigure() {
+        return figure;
+    }
+
     public Move turn(Board board) {
         while(true) {
             Scanner scn = new Scanner(System.in);
-            int hor = scn.nextInt();
             int vert = scn.nextInt();
-            if (hor > 0 && hor <= board.getSize() && vert > 0 && vert <= board.getSize() && board.isPointFree(hor, vert)) {
-                return new Move(hor, vert, figure);
+            int hor = scn.nextInt();
+            if (vert > 0 && vert <= board.getSize() && hor > 0 && hor <= board.getSize() && board.isPointFree(vert, hor)) {
+                return new Move(vert, hor, figure);
             } else {
                 System.out.println("Invalid move. Repeat.");
             }
